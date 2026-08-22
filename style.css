@@ -1,4 +1,4 @@
-:root {
+﻿:root {
   --text-color: #4f5943;
 }
 
@@ -641,8 +641,8 @@ body {
   z-index: 2;
   top: calc(18% + 20.15rem);
   left: 50%;
-  min-width: 10.5rem;
-  padding: 0.65rem 1.2rem;
+  min-width: 7rem;
+  padding: 0.55rem 1rem;
   transform: translateX(-50%);
   border: 1px solid color-mix(in srgb, var(--text-color) 55%, transparent);
   border-radius: 999px;
