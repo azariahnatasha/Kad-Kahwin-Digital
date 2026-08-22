@@ -47,6 +47,8 @@ window.addEventListener("resize", updateScrollControls);
 updateScrollControls();
 
 invitationOpen.addEventListener("click", () => {
+  removeFirstInteractionListeners();
+  playMusic();
   invitation.scrollTop = 0;
   invitation.classList.remove("is-locked");
   openingPage.classList.add("is-opening");

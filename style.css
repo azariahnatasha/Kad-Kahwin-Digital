@@ -876,7 +876,10 @@ body {
 }
 
 .page-one .event-title {
+  width: 100%;
   margin-top: 0;
+  padding-left: 0;
+  text-align: center;
 }
 
 .page-one .event-title,
@@ -1411,7 +1414,7 @@ body {
   position: absolute;
   z-index: 1;
   top: calc(47% - 1.25rem);
-  left: 50%;
+  left: calc(50% - 0.18rem);
   width: 88%;
   margin: 0;
   transform: translate(-50%, -50%);
@@ -1426,6 +1429,10 @@ body {
 .couple-names span,
 .couple-names i {
   display: block;
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
 }
 
 .couple-names i {
@@ -1450,7 +1457,20 @@ body {
 }
 
 .event-datetime p {
+  width: 100%;
   margin: 0;
+  padding-left: 0;
+  text-align: center;
+}
+
+.page-one .invitation-heading,
+.page-one .couple-names,
+.page-one .event-datetime,
+.page-one .event-title,
+.page-one .couple-names span,
+.page-one .couple-names i,
+.page-one .event-datetime p {
+  text-align: center;
 }
 
 .event-datetime .venue-name {
