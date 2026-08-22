@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 96">
+  <defs>
+    <filter id="soft" x="-4%" y="-12%" width="108%" height="124%">
+      <feGaussianBlur stdDeviation="0.7"/>
+    </filter>
+    <mask id="stroke" maskUnits="userSpaceOnUse" x="0" y="0" width="320" height="96">
+      <rect width="320" height="96" fill="black"/>
+      <path fill="white" filter="url(#soft)" d="M9 49C17 35 32 28 52 27c28-2 47-10 74-7 26 2 47 10 74 7 33-3 58 0 83 8 15 5 24 11 29 18-8 10-22 16-42 18-28 3-52-1-77 3-31 5-54 1-81-2-29-4-55 2-76-2C21 67 12 59 9 49Z"/>
+      <path fill="white" opacity=".78" d="M2 46c18-5 36-7 57-5l-6 7c-17 0-33 1-51 5Zm8 18c21-8 43-8 66-4l-8 7c-21-2-39 0-58 5Zm17-30c18-8 38-11 61-9l-10 8c-19-1-35 2-51 8Zm220-2c27-1 49 5 71 15l-2 6c-23-7-45-10-70-9Zm15 21c21 1 39 5 55 12l-6 5c-17-5-34-7-54-6Z"/>
+      <path fill="black" opacity=".62" d="M28 47c35-8 71-7 108-1 33 5 65 1 97-4 23-4 43-1 61 5-22-3-42 0-62 5-34 7-66 9-99 3-35-7-69-9-105-3Z"/>
+      <path fill="black" opacity=".42" d="M43 61c31-5 58-2 86 3 28 5 54 4 80-1 24-4 46-5 66-1-23-1-44 3-67 7-29 6-56 6-83 1-27-5-52-8-82-4Z"/>
+      <path fill="black" opacity=".33" d="M46 34c26-6 51-6 78-1 31 6 59 5 87 0 19-4 38-3 56 1-20-1-37 2-55 6-31 6-60 7-90 1-26-5-49-7-76-3Z"/>
+      <path fill="black" opacity=".38" d="M79 52c23-2 43 1 63 4 25 4 49 2 71-2 16-3 31-3 46-1-17 0-31 3-46 6-24 5-48 6-73 2-20-4-39-6-61-5Z"/>
+    </mask>
+  </defs>
+  <rect width="320" height="96" fill="white" mask="url(#stroke)"/>
+</svg>

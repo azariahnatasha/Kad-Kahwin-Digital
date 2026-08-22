@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Waze">
+  <rect width="128" height="128" rx="26" fill="#36c9e8"/>
+  <path d="M96 61c0-25-18-39-40-39S17 38 17 61c0 14 7 25 18 32v13l14-8c3 .7 6 .9 9 .9 22 0 38-15 38-37.9Z" fill="#fff" stroke="#202124" stroke-width="5" stroke-linejoin="round"/>
+  <circle cx="46" cy="58" r="4" fill="#202124"/>
+  <circle cx="70" cy="58" r="4" fill="#202124"/>
+  <path d="M43 72c8 8 22 8 30 0" fill="none" stroke="#202124" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="41" cy="99" r="8" fill="#202124"/>
+  <circle cx="78" cy="99" r="8" fill="#202124"/>
+</svg>

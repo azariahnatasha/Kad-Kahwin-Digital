@@ -1,0 +1,1653 @@
+:root {
+  --text-color: #4f5943;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  background: #ddd9cf;
+  overflow: hidden;
+}
+
+.invitation {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  height: 100svh;
+  margin: 0 auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: #e6eddf;
+  background-image: url("background-watercolor-mobile-v8-short-meadow.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: 0 0 35px rgb(45 42 35 / 18%);
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+  scrollbar-width: none;
+}
+
+.invitation::-webkit-scrollbar {
+  display: none;
+}
+
+.invitation.is-locked {
+  overflow-y: hidden;
+}
+
+.opening-page {
+  position: fixed;
+  z-index: 70;
+  top: 0;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: min(100%, 500px);
+  height: 100svh;
+  transform: translateX(-50%);
+  background-color: #e6eddf;
+  background-image: url("background-watercolor-mobile-v8-short-meadow.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 850ms ease, visibility 850ms ease;
+}
+
+.opening-page.is-opening {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.opening-page[hidden] {
+  display: none;
+}
+
+.invitation-open {
+  min-width: 12rem;
+  padding: 0.78rem 1.45rem;
+  border: 1px solid color-mix(in srgb, var(--text-color) 55%, transparent);
+  border-radius: 999px;
+  background: rgb(255 252 245 / 64%);
+  box-shadow: 0 0.45rem 1.4rem rgb(69 62 49 / 10%);
+  color: var(--text-color);
+  font-family: Calibri, sans-serif;
+  font-size: clamp(0.68rem, 2.7vw, 0.84rem);
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  backdrop-filter: blur(3px);
+  transition: transform 180ms ease, background-color 180ms ease;
+}
+
+.invitation-open:hover,
+.invitation-open:focus-visible {
+  transform: translateY(-2px);
+  background: rgb(255 252 245 / 80%);
+}
+
+.music-toggle {
+  position: fixed;
+  z-index: 60;
+  top: 0.85rem;
+  right: max(0.8rem, calc((100vw - 500px) / 2 + 0.8rem));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.15rem;
+  height: 2.15rem;
+  padding: 0;
+  border: 1px solid rgb(79 89 67 / 25%);
+  border-radius: 999px;
+  background: rgb(250 247 239 / 70%);
+  box-shadow: 0 0.25rem 0.8rem rgb(67 61 50 / 10%);
+  color: var(--text-color);
+  font-family: Calibri, sans-serif;
+  font-size: 0.53rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  backdrop-filter: blur(3px);
+}
+
+.music-toggle[hidden] {
+  display: none;
+}
+
+.music-toggle svg {
+  width: 1.15rem;
+  height: 1.15rem;
+  overflow: visible;
+}
+
+.music-speaker {
+  fill: currentColor;
+}
+
+.music-wave {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  opacity: 0;
+}
+
+.music-muted {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.music-toggle.is-playing .music-muted {
+  display: none;
+}
+
+.music-toggle.is-playing .music-wave--one {
+  animation: musicWave 1.15s ease-in-out infinite;
+}
+
+.music-toggle.is-playing .music-wave--two {
+  animation: musicWave 1.15s ease-in-out 0.2s infinite;
+}
+
+@keyframes musicWave {
+  0%, 100% { opacity: 0.28; }
+  50% { opacity: 1; }
+}
+
+.scroll-controls {
+  position: fixed;
+  z-index: 50;
+  inset: 0;
+  pointer-events: none;
+}
+
+.scroll-controls[hidden] {
+  display: none;
+}
+
+.scroll-control {
+  position: absolute;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+  padding: 0.25rem 0.7rem;
+  transform: translateX(-50%);
+  border: 0;
+  background: transparent;
+  color: var(--text-color);
+  font-family: Calibri, sans-serif;
+  font-size: 0.56rem;
+  line-height: 1.1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  pointer-events: auto;
+  text-shadow: 0 1px 3px rgb(255 255 255 / 90%);
+}
+
+.scroll-control[hidden] {
+  display: none;
+}
+
+.scroll-control--up {
+  top: 0.8rem;
+}
+
+.scroll-control--down {
+  bottom: 0.8rem;
+}
+
+.scroll-chevrons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scroll-chevrons i {
+  display: block;
+  width: 0.48rem;
+  height: 0.48rem;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+}
+
+.scroll-control--down .scroll-chevrons i {
+  transform: rotate(45deg);
+}
+
+.scroll-control--up .scroll-chevrons i {
+  transform: rotate(225deg);
+}
+
+.scroll-control--down .scroll-chevrons {
+  margin-top: 0.25rem;
+  animation: scrollHintDown 1.45s ease-in-out infinite;
+}
+
+.scroll-control--up .scroll-chevrons {
+  margin-bottom: 0.25rem;
+  animation: scrollHintUp 1.45s ease-in-out infinite;
+}
+
+@keyframes scrollHintDown {
+  0%, 100% { transform: translateY(-1px); }
+  50% { transform: translateY(3px); }
+}
+
+@keyframes scrollHintUp {
+  0%, 100% { transform: translateY(1px); }
+  50% { transform: translateY(-3px); }
+}
+
+.invitation-page {
+  position: relative;
+  flex: 0 0 auto;
+  width: 100%;
+  height: 100svh;
+  min-height: 100svh;
+  overflow: hidden;
+  background: transparent;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.page-one,
+.page-two,
+.page-three {
+  z-index: auto;
+  visibility: visible;
+  transform: none;
+  cursor: default;
+}
+
+.page-three-content {
+  position: absolute;
+  z-index: 1;
+  top: 15%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  transform: translateX(-50%);
+}
+
+.page-three-content .details-title,
+.page-three-content .details-datetime,
+.page-three-content .countdown,
+.page-three-content .details-location,
+.page-three-content .rsvp-open,
+.page-three-content .contact-details {
+  position: static;
+  top: auto;
+  left: auto;
+  transform: none;
+}
+
+.page-three-content .details-datetime {
+  margin-top: 1.6rem;
+}
+
+.page-three-content .countdown {
+  margin-top: 0;
+}
+
+.page-three-content .details-location {
+  margin-top: 2.5rem;
+}
+
+.page-three-content .theme-colors {
+  margin-top: 3.3rem;
+}
+
+.page-three-content .event-schedule {
+  margin-top: 1.8rem;
+}
+
+.page-three-content .rsvp-open {
+  margin-top: 2.7rem;
+}
+
+.page-three-content .contact-details {
+  margin-top: 1.4rem;
+}
+
+.details-title {
+  position: absolute;
+  z-index: 1;
+  top: calc(18% + 0.25rem);
+  left: 50%;
+  width: 88%;
+  margin: 0;
+  transform: translateX(-50%);
+  color: var(--text-color);
+  font-family: Calibri, sans-serif;
+  font-size: clamp(0.72rem, 3vw, 0.95rem);
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-align: center;
+}
+
+.details-datetime {
+  position: absolute;
+  z-index: 1;
+  top: calc(18% + 3.05rem);
+  left: 50%;
+  width: min(76%, 19rem);
+  transform: translateX(-50%);
+  color: var(--text-color);
+  font-family: Calibri, sans-serif;
+  font-size: clamp(0.72rem, 3vw, 0.95rem);
+  line-height: 1.6;
+  letter-spacing: 0.12em;
+  text-align: center;
+}
+
+.details-datetime p {
+  margin: 0;
+}
+
+.details-date-line {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.details-date-line span {
+  position: relative;
+  white-space: nowrap;
+}
+
+.details-date-line span:not(:last-child)::after {
+  position: absolute;
+  right: 0;
+  transform: translateX(50%);
+  content: "|";
+}
+
+.details-datetime .hijri-date {
+  margin-top: 0.45rem;
+  font-size: 0.95em;
+  letter-spacing: 0.1em;
+}
+
+.countdown {
+  position: absolute;
+  z-index: 1;
+  top: calc(18% + 7.75rem);
+  left: 50%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: min(80%, 20rem);
+  transform: translateX(-50%);
+  color: var(--text-color);
+  text-align: center;
+}
+
+.countdown-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.65rem 0.25rem 0.55rem;
+  box-sizing: border-box;
+}
+
+.countdown-item:not(:last-child)::after {
+  position: absolute;
+  top: 20%;
+  right: 0;
+  width: 1px;
+  height: 60%;
+  background: color-mix(in srgb, var(--text-color) 34%, transparent);
+  content: "";
+}
+
+.countdown-number {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.4rem, 6.5vw, 2rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.08em;
+}
+
+.countdown-label {
+  font-family: Calibri, sans-serif;
+  font-size: clamp(0.58rem, 2.3vw, 0.74rem);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.details-location {
+  position: absolute;
+  z-index: 2;
+  top: calc(18% + 13.95rem);
+  left: 50%;
+  display: block;
+  width: min(62%, 15rem);
+  transform: translateX(-50%);
+  color: var(--text-color);
+  font-family: Calibri, sans-serif;
+  text-align: center;
+}
+
+.location-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.38rem;
+  margin: 0 0 0.9rem;
+  color: var(--text-color);
+  font-family: Calibri, sans-serif;
+  font-size: clamp(0.72rem, 3vw, 0.95rem);
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-align: center;
+}
+
+.location-title-icon {
+  display: block;
+  width: 0.88rem;
+  height: 0.88rem;
+  flex: 0 0 auto;
+  fill: currentColor;
+  opacity: 0.82;
+}
+
+.location-actions {
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  align-items: center;
+  column-gap: clamp(1rem, 5vw, 1.5rem);
+  width: min(100%, 11rem);
+  margin: 0 auto;
+}
+
+.location-option {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  justify-self: center;
+  text-decoration: none;
+  transition: transform 180ms ease, opacity 180ms ease;
+}
+
+.location-option img {
+  display: block;
+  width: 2.55rem;
+  height: 2.55rem;
+  object-fit: contain;
+}
+
+.location-option:hover,
+.location-option:focus-visible {
+  opacity: 0.88;
+  transform: translateY(-2px);
+}
+
+.location-divider {
+  display: block;
+  width: 1px;
+  height: 2.55rem;
+  background: #b7a278;
+  opacity: 0.68;
+}
+
+.theme-colors {
+  width: 76%;
+  color: var(--text-color);
+  font-family: Calibri, sans-serif;
+  font-size: clamp(0.72rem, 3vw, 0.95rem);
+  text-align: center;
+}
+
+.event-schedule {
+  width: min(88%, 21rem);
+  color: var(--text-color);
+  font-family: Calibri, sans-serif;
+  font-size: clamp(0.72rem, 3vw, 0.95rem);
+  line-height: 1.4;
+  text-align: center;
+}
+
+.event-schedule h3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.38rem;
+  margin: 0 0 0.65rem;
+  font: inherit;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+}
+
+.event-schedule-icon {
+  width: 0.88rem;
+  height: 0.88rem;
+  flex: 0 0 auto;
+  fill: currentColor;
+  opacity: 0.82;
+}
+
+.event-schedule p {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) 0.35rem minmax(0, 1fr);
+  gap: 0.35rem;
+  width: min(100%, 19rem);
+  margin: 0.16rem auto;
+  letter-spacing: 0.03em;
+}
+
+.event-schedule i {
+  text-align: center;
+  font-style: normal;
+}
+
+.event-schedule p span:first-child {
+  text-align: right;
+}
+
+.event-schedule p span:last-child {
+  text-align: left;
+}
+
+.theme-swatches {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
+  align-items: stretch;
+  gap: 0.5rem;
+}
+
+.theme-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  min-width: 0;
+}
+
+.theme-group > p {
+  margin: 0;
+  font-size: 0.95em;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.theme-group > small {
+  font-size: 0.82em;
+  letter-spacing: 0.035em;
+  white-space: nowrap;
+}
+
+.theme-divider {
+  width: 1px;
+  background: rgb(79 89 67 / 24%);
+}
+
+.theme-palette {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.35rem;
+}
+
+.paint-swatch {
+  display: block;
+  width: clamp(4.5rem, 20vw, 5.7rem);
+  height: clamp(1.1rem, 5vw, 1.45rem);
+  overflow: visible;
+  fill: currentColor;
+  transform: rotate(-1.25deg);
+}
+
+.theme-group:last-child .paint-swatch {
+  transform: rotate(1.25deg);
+}
+
+.paint-swatch--nude {
+  color: #d8c3a5;
+}
+
+.paint-swatch--sage {
+  color: #b8c9a8;
+}
+
+.paint-swatch__tips {
+  opacity: 0.72;
+}
+
+.rsvp-open {
+  position: absolute;
+  z-index: 2;
+  top: calc(18% + 20.15rem);
+  left: 50%;
+  min-width: 10.5rem;
+  padding: 0.65rem 1.2rem;
+  transform: translateX(-50%);
+  border: 1px solid color-mix(in srgb, var(--text-color) 55%, transparent);
+  border-radius: 999px;
+  background: rgb(255 252 245 / 58%);
+  color: var(--text-color);
+  font-family: Calibri, sans-serif;
+  font-size: clamp(0.62rem, 2.5vw, 0.78rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  backdrop-filter: blur(2px);
+}
+
+.contact-details {
+  position: absolute;
+  z-index: 2;
+  top: calc(18% + 24.1rem);
+  left: 50%;
+  width: 82%;
+  transform: translateX(-50%);
+  color: var(--text-color);
+  font-family: Calibri, sans-serif;
+  font-size: clamp(0.62rem, 2.5vw, 0.8rem);
+  line-height: 1.45;
+  letter-spacing: 0.06em;
+  text-align: center;
+}
+
+.contact-details p {
+  margin: 0.12rem 0;
+}
+
+.contact-details p:first-child {
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+}
+
+.contact-details a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.rsvp-overlay {
+  position: absolute;
+  z-index: 20;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+  background: rgb(74 67 55 / 24%);
+  cursor: default;
+  backdrop-filter: blur(3px);
+}
+
+.rsvp-overlay[hidden] {
+  display: none;
+}
+
+.rsvp-form {
+  position: relative;
+  box-sizing: border-box;
+  width: min(84%, 19rem);
+  padding: 1.55rem 1.35rem 1.25rem;
+  border: 1px solid rgb(112 100 77 / 28%);
+  border-radius: 1rem;
+  background: rgb(250 247 239 / 94%);
+  box-shadow: 0 0.9rem 2.5rem rgb(65 56 43 / 20%);
+  color: var(--text-color);
+  font-family: Calibri, sans-serif;
+  text-align: left;
+}
+
+.rsvp-form h3 {
+  margin: 0;
+  font-family: Calibri, sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-align: center;
+}
+
+.rsvp-intro {
+  margin: 0.4rem 0 1.1rem;
+  font-size: 0.76rem;
+  font-style: italic;
+  text-align: center;
+}
+
+.rsvp-close {
+  position: absolute;
+  top: 0.45rem;
+  right: 0.65rem;
+  padding: 0.1rem 0.35rem;
+  border: 0;
+  background: transparent;
+  color: var(--text-color);
+  font: 1.3rem/1 Calibri, sans-serif;
+  cursor: pointer;
+}
+
+.rsvp-field,
+.attendance-choice {
+  display: grid;
+  gap: 0.38rem;
+  margin: 0 0 0.85rem;
+  padding: 0;
+  border: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.07em;
+}
+
+.guest-count-field[hidden] {
+  display: none;
+}
+
+.rsvp-field input,
+.rsvp-field select {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.62rem 0.7rem;
+  border: 1px solid rgb(112 100 77 / 30%);
+  border-radius: 0.45rem;
+  outline: none;
+  background: rgb(255 253 248 / 82%);
+  color: var(--text-color);
+  font: 0.82rem Calibri, sans-serif;
+}
+
+.rsvp-field input:focus,
+.rsvp-field select:focus {
+  border-color: rgb(91 80 59 / 62%);
+  box-shadow: 0 0 0 2px rgb(122 106 77 / 10%);
+}
+
+.attendance-choice {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.attendance-choice legend {
+  grid-column: 1 / -1;
+  margin-bottom: 0.38rem;
+}
+
+.attendance-choice label {
+  cursor: pointer;
+}
+
+.attendance-choice input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.attendance-choice label span {
+  display: block;
+  padding: 0.55rem 0.4rem;
+  border: 1px solid rgb(112 100 77 / 30%);
+  border-radius: 0.45rem;
+  text-align: center;
+}
+
+.attendance-choice input:checked + span {
+  border-color: rgb(83 105 69 / 60%);
+  background: rgb(179 194 158 / 28%);
+}
+
+.rsvp-submit {
+  width: 100%;
+  padding: 0.68rem;
+  border: 1px solid rgb(85 75 56 / 55%);
+  border-radius: 999px;
+  background: rgb(93 85 67 / 88%);
+  color: #fffdf8;
+  font-family: Calibri, sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.rsvp-submit:disabled {
+  cursor: wait;
+  opacity: 0.68;
+}
+
+.rsvp-note.is-success {
+  color: #526846;
+  font-style: normal;
+}
+
+.rsvp-note.is-error {
+  color: #8a4f49;
+  font-style: normal;
+}
+
+.rsvp-note {
+  margin: 0.55rem 0 0;
+  font-size: 0.64rem;
+  font-style: italic;
+  text-align: center;
+}
+
+.countdown-message {
+  position: absolute;
+  z-index: 1;
+  top: calc(18% + 18.95rem);
+  left: 50%;
+  width: 82%;
+  margin: 0;
+  transform: translateX(-50%);
+  color: var(--text-color);
+  font-family: Calibri, sans-serif;
+  font-size: clamp(0.62rem, 2.4vw, 0.78rem);
+  font-style: italic;
+  letter-spacing: 0.06em;
+  text-align: center;
+}
+
+.invitation-heading {
+  position: absolute;
+  z-index: 1;
+  top: 15%;
+  left: 50%;
+  width: 88%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.page-one .invitation-heading {
+  top: 15%;
+}
+
+.page-one .event-title {
+  margin-top: 0;
+}
+
+.page-one .event-title,
+.page-one .couple-names span,
+.page-one .couple-names i,
+.page-one .event-datetime p {
+  opacity: 0;
+  animation: pageOneTextReveal 2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.invitation.is-locked .page-one .event-title,
+.invitation.is-locked .page-one .couple-names span,
+.invitation.is-locked .page-one .couple-names i,
+.invitation.is-locked .page-one .event-datetime p {
+  animation-play-state: paused;
+}
+
+.page-one .event-title {
+  animation-delay: 0.3s;
+}
+
+.page-one .couple-names span:first-child {
+  animation-delay: 0.9s;
+}
+
+.page-one .couple-names i {
+  animation-delay: 1.35s;
+}
+
+.page-one .couple-names span:last-child {
+  animation-delay: 1.8s;
+}
+
+.page-one .event-datetime p:first-child {
+  animation-delay: 2.4s;
+}
+
+.page-one .event-datetime .venue-name {
+  animation-delay: 2.9s;
+}
+
+@keyframes pageOneTextReveal {
+  from {
+    opacity: 0;
+    filter: blur(2px);
+    transform: translateY(0.7rem);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+.page-two .bismillah,
+.page-two .walimatul-title,
+.page-two .greeting-copy,
+.page-two .family-names,
+.page-two .invitation-copy,
+.page-two .bride-name,
+.page-two .choice-line {
+  opacity: 0;
+}
+
+.page-two.is-visible .bismillah,
+.page-two.is-visible .walimatul-title,
+.page-two.is-visible .greeting-copy,
+.page-two.is-visible .family-names,
+.page-two.is-visible .invitation-copy,
+.page-two.is-visible .bride-name,
+.page-two.is-visible .choice-line {
+  animation: pageTwoTextReveal 1.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.page-two.is-visible .bismillah {
+  animation-delay: 0.18s;
+}
+
+.page-two.is-visible .walimatul-title {
+  animation-delay: 0.5s;
+}
+
+.page-two.is-visible .greeting-copy {
+  animation-delay: 0.62s;
+}
+
+.page-two.is-visible .family-names--first {
+  animation-delay: 1.03s;
+}
+
+.page-two.is-visible .family-together {
+  animation-delay: 1.37s;
+}
+
+.page-two.is-visible .family-names--last {
+  animation-delay: 1.7s;
+}
+
+.page-two.is-visible .invitation-copy {
+  animation-delay: 2.13s;
+}
+
+.page-two.is-visible .bride-name:not(.bride-name--bride) {
+  animation-delay: 2.58s;
+}
+
+.page-two.is-visible .choice-line {
+  animation-delay: 2.95s;
+}
+
+.page-two.is-visible .bride-name--bride {
+  animation-delay: 3.32s;
+}
+
+@keyframes pageTwoTextReveal {
+  from {
+    opacity: 0;
+    filter: blur(2px);
+    translate: 0 0.7rem;
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    translate: 0 0;
+  }
+}
+
+.page-three .details-title,
+.page-three .details-date-line,
+.page-three .hijri-date,
+.page-three .countdown-item,
+.page-three .details-location,
+.page-three .theme-colors,
+.page-three .event-schedule,
+.page-three .rsvp-open,
+.page-three .contact-details {
+  opacity: 0;
+}
+
+.page-three.is-visible .details-title,
+.page-three.is-visible .details-date-line,
+.page-three.is-visible .hijri-date,
+.page-three.is-visible .countdown-item,
+.page-three.is-visible .details-location,
+.page-three.is-visible .theme-colors,
+.page-three.is-visible .event-schedule,
+.page-three.is-visible .rsvp-open,
+.page-three.is-visible .contact-details {
+  animation: pageThreeTextReveal 1.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.page-three.is-visible .details-title {
+  animation-delay: 0.18s;
+}
+
+.page-three.is-visible .details-date-line {
+  animation-delay: 0.62s;
+}
+
+.page-three.is-visible .hijri-date {
+  animation-delay: 0.95s;
+}
+
+.page-three.is-visible .countdown-item:nth-child(1) {
+  animation-delay: 0.18s;
+}
+
+.page-three.is-visible .countdown-item:nth-child(2) {
+  animation-delay: 0.62s;
+}
+
+.page-three.is-visible .countdown-item:nth-child(3) {
+  animation-delay: 1.03s;
+}
+
+.page-three.is-visible .details-location {
+  animation-delay: 2.13s;
+}
+
+.page-three.is-visible .theme-colors {
+  animation-delay: 1.37s;
+}
+
+.page-three.is-visible .event-schedule {
+  animation-delay: 1.7s;
+}
+
+.page-three.is-visible .rsvp-open {
+  animation-delay: 2.58s;
+}
+
+.page-three.is-visible .contact-details {
+  animation-delay: 2.95s;
+}
+
+@keyframes pageThreeTextReveal {
+  from {
+    opacity: 0;
+    filter: blur(2px);
+    translate: 0 0.7rem;
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    translate: 0 0;
+  }
+}
+
+.bismillah {
+  width: fit-content;
+  margin: 0 auto;
+  transform: none;
+  color: var(--text-color);
+  font-family: "Amiri", "Traditional Arabic", "Arabic Typesetting", serif;
+  font-size: clamp(1rem, 4.4vw, 1.35rem);
+  font-weight: 300;
+  line-height: 1.5;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.event-title {
+  margin: 0.25rem 0 0;
+  color: var(--text-color);
+  font-family: Calibri, sans-serif;
+  font-size: clamp(0.66rem, 2.7vw, 0.85rem);
+  font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: 0.14em;
+  text-align: center;
+}
+
+.greeting-copy {
+  margin: 0.65rem auto 0;
+  color: var(--text-color);
+  font-family: Calibri, sans-serif;
+  font-size: clamp(0.68rem, 3vw, 0.9rem);
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: 0.03em;
+  text-align: center;
+}
+
+.page-two .bismillah,
+.page-two .greeting-copy {
+  position: relative;
+  top: -1.5rem;
+}
+
+.page-two .invitation-heading,
+.page-two .couple-invitation-block {
+  left: 50%;
+  margin-right: 0;
+  margin-left: 0;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.page-two .invitation-heading {
+  top: 7rem;
+}
+
+.page-two .couple-invitation-block {
+  top: 24rem;
+}
+
+.page-two .bismillah,
+.page-two .walimatul-title,
+.page-two .greeting-copy,
+.page-two .family-names,
+.page-two .invitation-copy,
+.page-two .bride-name,
+.page-two .choice-line {
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+.family-names {
+  margin: 1rem auto 0;
+  color: var(--text-color);
+  font-family: Calibri, sans-serif;
+  font-size: clamp(0.68rem, 3vw, 0.9rem);
+  font-weight: 400;
+  line-height: 1.35;
+  text-align: center;
+}
+
+.family-names + .family-names {
+  margin-top: 0.35rem;
+}
+
+.family-together {
+  font-style: italic;
+}
+
+.family-names span,
+.family-names i {
+  display: block;
+}
+
+.family-names i {
+  margin: 0.15rem 0;
+  font-size: 0.72em;
+  font-style: normal;
+}
+
+.invitation-copy {
+  margin: 0.8rem auto 0;
+  color: var(--text-color);
+  font-family: Calibri, sans-serif;
+  font-size: clamp(0.68rem, 3vw, 0.9rem);
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: 0.03em;
+  text-align: center;
+}
+
+.couple-invitation-block {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  width: 90%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.couple-invitation-block .invitation-copy {
+  position: relative;
+  top: -4.9rem;
+  width: 100%;
+  margin-top: 0;
+  transform: none;
+  text-align: center;
+}
+
+.couple-name-block {
+  position: relative;
+  top: -2rem;
+}
+
+.bride-name {
+  margin: 0.3rem auto 0;
+  color: var(--text-color);
+  font-family: "Pinyon Script", cursive;
+  font-size: clamp(1.05rem, 4.8vw, 1.5rem);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+  text-align: center;
+}
+
+.bride-name--bride {
+  font-family: "Pinyon Script", cursive;
+}
+
+.choice-line {
+  margin: 0.55rem auto 0;
+  color: var(--text-color);
+  font-family: Calibri, sans-serif;
+  font-size: clamp(0.58rem, 2.3vw, 0.85rem);
+  font-style: italic;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.choice-line + .bride-name {
+  margin-top: 0.55rem;
+}
+
+.choice-line + .bride-name--bride {
+  margin-top: 0.9rem;
+}
+
+.page-two .greeting-copy,
+.page-two .walimatul-title,
+.page-two .family-names,
+.page-two .invitation-copy,
+.page-two .choice-line {
+  font-size: clamp(0.72rem, 3vw, 0.95rem);
+  line-height: 1.4;
+  letter-spacing: 0.03em;
+}
+
+.page-two-content {
+  position: absolute;
+  z-index: 1;
+  top: calc(50% - 1.25rem);
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.page-two .page-two-content .invitation-heading,
+.page-two .page-two-content .couple-invitation-block {
+  position: static;
+  top: auto;
+  left: auto;
+  width: 100%;
+  margin-right: 0;
+  margin-left: 0;
+  transform: none;
+  text-align: center;
+}
+
+.page-two .page-two-content .bismillah,
+.page-two .page-two-content .walimatul-title,
+.page-two .page-two-content .greeting-copy {
+  position: static;
+  top: auto;
+}
+
+.page-two .page-two-content .greeting-copy {
+  margin-top: 0.3rem;
+}
+
+.greeting-honour {
+  display: block;
+  margin-top: 0.22rem;
+}
+
+.page-two .page-two-content .walimatul-title {
+  margin: 0.08rem auto 0;
+  color: var(--text-color);
+  font-family: Calibri, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+}
+
+.page-two .page-two-content .bismillah,
+.page-two .page-two-content .walimatul-title,
+.page-two .page-two-content .greeting-copy {
+  position: relative;
+  top: -2.5rem;
+}
+
+.page-two .page-two-content .family-names {
+  position: relative;
+  top: -1rem;
+  margin-top: 1.15rem;
+}
+
+.page-two .page-two-content .family-names + .family-names {
+  margin-top: 0.3rem;
+}
+
+.page-two .page-two-content .couple-invitation-block {
+  margin-top: 1.9rem;
+}
+
+.page-two .page-two-content .invitation-copy {
+  position: relative;
+  top: -0.7rem;
+  width: 100%;
+  margin-top: 0;
+  transform: none;
+}
+
+.page-two .page-two-content .couple-name-block {
+  position: static;
+  top: auto;
+  margin-top: 1.45rem;
+}
+
+.page-two .page-two-content .couple-name-block .bride-name:first-child {
+  margin-top: 0;
+}
+
+.ceremony-date {
+  margin: 1.5rem auto 0;
+  color: var(--text-color);
+  font-family: Calibri, sans-serif;
+  font-size: clamp(0.6rem, 2.4vw, 0.78rem);
+  font-weight: 400;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.location-link {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  align-items: center;
+  column-gap: 0.7rem;
+  width: min(88%, 310px);
+  margin: 2.3rem auto 0;
+  color: var(--text-color);
+  font-family: Calibri, sans-serif;
+  line-height: 1.25;
+  text-align: left;
+  text-decoration: none;
+}
+
+.maps-icon {
+  display: block;
+  width: 2.8rem;
+  height: 2.8rem;
+  object-fit: contain;
+  justify-self: center;
+  transform: translateX(1.5rem);
+}
+
+.location-copy,
+.location-copy span {
+  display: block;
+}
+
+.location-copy {
+  min-width: 0;
+  justify-self: start;
+  transform: translateX(0.85rem);
+  text-align: center;
+}
+
+.location-copy strong {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: clamp(0.62rem, 2.5vw, 0.82rem);
+  letter-spacing: 0.12em;
+}
+
+.location-copy span {
+  font-size: clamp(0.56rem, 2.2vw, 0.72rem);
+  letter-spacing: 0.03em;
+}
+
+.couple-names {
+  position: absolute;
+  z-index: 1;
+  top: calc(47% - 1.25rem);
+  left: 50%;
+  width: 88%;
+  margin: 0;
+  transform: translate(-50%, -50%);
+  color: var(--text-color);
+  font-family: "Pinyon Script", cursive;
+  font-size: clamp(3.4rem, 16vw, 5rem);
+  font-weight: 400;
+  line-height: 1.05;
+  text-align: center;
+}
+
+.couple-names span,
+.couple-names i {
+  display: block;
+}
+
+.couple-names i {
+  margin: 0.22rem 0;
+  font-size: 0.62em;
+  font-weight: 400;
+}
+
+.event-datetime {
+  position: absolute;
+  z-index: 1;
+  top: calc(71% - 1.25rem);
+  left: 50%;
+  width: 88%;
+  transform: translateX(-50%);
+  color: var(--text-color);
+  font-family: Calibri, sans-serif;
+  font-size: clamp(0.72rem, 3vw, 0.95rem);
+  line-height: 1.6;
+  letter-spacing: 0.12em;
+  text-align: center;
+}
+
+.event-datetime p {
+  margin: 0;
+}
+
+.event-datetime .venue-name {
+  margin-top: 0.7rem;
+  font-size: 0.78em;
+}
+
+/* Lightweight decorative petals, generated in script.js. */
+.petal-layer {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.petal {
+  position: absolute;
+  top: -12%;
+  left: 0;
+  width: var(--petal-size);
+  height: calc(var(--petal-size) * 1.55);
+  border-radius: 80% 12% 75% 18%;
+  opacity: var(--petal-opacity);
+  background: linear-gradient(145deg, #f6d3d4 5%, #cf8996 72%, #a95f71);
+  box-shadow: inset 1px 1px 2px rgb(255 255 255 / 55%);
+  animation: petalFall var(--fall-duration) linear var(--fall-delay) infinite;
+  will-change: transform;
+}
+
+.petal:nth-child(3n) {
+  background: linear-gradient(145deg, #f8e3dc 5%, #dca69e 72%, #b67678);
+}
+
+.petal:nth-child(4n) {
+  border-radius: 65% 25% 70% 28%;
+}
+
+@keyframes petalFall {
+  0% {
+    transform: translate3d(var(--start-x), -12vh, 0) rotate(0deg) rotateX(0deg);
+  }
+
+  45% {
+    transform: translate3d(var(--middle-x), 48vh, 0) rotate(210deg) rotateX(120deg);
+  }
+
+  100% {
+    transform: translate3d(var(--end-x), 112vh, 0) rotate(520deg) rotateX(240deg);
+  }
+}
+
+.butterfly-layer {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.butterfly {
+  position: absolute;
+  top: var(--flight-height);
+  left: -12%;
+  width: var(--butterfly-size);
+  height: calc(var(--butterfly-size) * 0.72);
+  opacity: var(--butterfly-opacity);
+  animation: butterflyFlight var(--flight-duration) linear var(--flight-delay) infinite;
+  will-change: transform;
+}
+
+.butterfly-shape {
+  position: absolute;
+  inset: 0;
+  transform: rotate(180deg);
+}
+
+.butterfly-wing {
+  position: absolute;
+  top: 5%;
+  width: 52%;
+  height: 78%;
+  background: linear-gradient(145deg, #dfadb2, #9a6871 72%);
+  box-shadow: inset 0 0 0 1px rgb(79 89 67 / 20%);
+}
+
+.butterfly-wing--left {
+  right: 48%;
+  border-radius: 78% 32% 70% 28%;
+  transform-origin: right center;
+  animation: flutterLeft 0.24s ease-in-out infinite alternate;
+}
+
+.butterfly-wing--right {
+  left: 48%;
+  border-radius: 32% 78% 28% 70%;
+  transform-origin: left center;
+  animation: flutterRight 0.24s ease-in-out infinite alternate;
+}
+
+.butterfly-body {
+  position: absolute;
+  z-index: 1;
+  top: 18%;
+  left: 47%;
+  width: 7%;
+  height: 72%;
+  border-radius: 100%;
+  background: var(--primary-color, #59624b);
+}
+
+@keyframes butterflyFlight {
+  0% {
+    transform: translate3d(0, 8vh, 0) rotate(-8deg);
+  }
+  24% {
+    transform: translate3d(calc(min(100vw, 500px) * 0.28), -5vh, 0) rotate(7deg);
+  }
+  52% {
+    transform: translate3d(calc(min(100vw, 500px) * 0.58), -14vh, 0) rotate(-5deg);
+  }
+  76% {
+    transform: translate3d(calc(min(100vw, 500px) * 0.84), -27vh, 0) rotate(6deg);
+  }
+  100% {
+    transform: translate3d(calc(min(100vw, 500px) + 5rem), -42vh, 0) rotate(-4deg);
+  }
+}
+
+@keyframes flutterLeft {
+  from { transform: perspective(25px) rotateY(18deg); }
+  to { transform: perspective(25px) rotateY(72deg); }
+}
+
+@keyframes flutterRight {
+  from { transform: perspective(25px) rotateY(-18deg); }
+  to { transform: perspective(25px) rotateY(-72deg); }
+}
+
+@media (min-width: 600px) {
+  .invitation-page {
+    min-height: 100vh;
+  }
+
+  .bismillah {
+    font-size: 1.35rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .invitation-page {
+    transition-duration: 0.01ms;
+  }
+
+  .petal-layer,
+  .butterfly-layer {
+    display: none;
+  }
+
+  .scroll-chevrons {
+    animation: none;
+  }
+
+  .music-wave {
+    animation: none !important;
+  }
+
+  .page-one .event-title,
+  .page-one .couple-names span,
+  .page-one .couple-names i,
+  .page-one .event-datetime p {
+    opacity: 1;
+    animation: none;
+  }
+
+  .page-two .bismillah,
+  .page-two .walimatul-title,
+  .page-two .greeting-copy,
+  .page-two .family-names,
+  .page-two .invitation-copy,
+  .page-two .bride-name,
+  .page-two .choice-line {
+    opacity: 1;
+    animation: none;
+  }
+
+  .page-three .details-title,
+  .page-three .details-date-line,
+  .page-three .hijri-date,
+  .page-three .countdown-item,
+  .page-three .details-location,
+  .page-three .theme-colors,
+  .page-three .event-schedule,
+  .page-three .rsvp-open,
+  .page-three .contact-details {
+    opacity: 1;
+    animation: none;
+  }
+
+}
